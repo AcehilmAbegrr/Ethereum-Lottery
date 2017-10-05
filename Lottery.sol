@@ -41,7 +41,7 @@ contract Lottery{
     string _firstName, string _lastName) payable returns (string) {
         
         
-        if (msg.value != USD_IN_CENTS * oracle.WEI()) throw;
+        //if (msg.value != USD_IN_CENTS * oracle.WEI()) throw;
         
         var entry = entries[msg.sender];
         
@@ -52,6 +52,11 @@ contract Lottery{
         
         return ("You have entered into the lottery");
         
+    }
+    
+    function getTicket () constant returns (string, string, uint) {
+        var entry = entries[msg.sender];
+        return (entry.firstName, entry.lastName, entry.numberGuessed);
     }
     
     
