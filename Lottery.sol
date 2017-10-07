@@ -41,6 +41,10 @@ contract Lottery{
         return ratePerDollar;
     }
     
+    function currentJackPot() constant returns (uint jackPot) {
+        return jackPot;
+    }
+    
     function buyTicket (uint _numberGuessed) payable {
         
         
@@ -61,7 +65,7 @@ contract Lottery{
     //}
     
     /// Pick a winner for small lotteries put winnings in entry's address
-    function pickSmallWinner () ifOwner endPlay {
+    function pickSmallWinner () ifOwner endPlay payable {
         //Oracilize a "random" number
         uint numPlayers = participants.length;
         if (numPlayers < 100){
@@ -79,12 +83,11 @@ contract Lottery{
     }
     
     /// Pick a winner for a big lottery (over 100 participants) put earnings into winners address
-    function pickBigWinner () ifOwner endPlay {
+    function pickBigWinner () ifOwner endPlay payable {
         // Oraclize a "random" number
         uint randomNum = 0; //change this to the random function
         // For small lotteries, we will just pick a random player
         uint numPlayers = participants.length;
-        
         
         if (numPlayers > 100){
             // pick the winner
